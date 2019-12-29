@@ -1,0 +1,98 @@
+#
+# Remote desktop related
+#
+function rdp {
+	rdesktop -r sound:local -g 1920x1050 -a 32 -z -P $*
+}
+
+function rdp-dev {
+	rdp -u administrator 10.1.1.152 $*
+}
+
+#
+# Docker related
+#
+function docker-build {
+	docker build --force-rm $*
+}
+
+function docker-run {
+	docker run --rm $*
+}
+
+function docker-run-it {
+	docker-run -i -it --entrypoint=/bin/bash $*
+}
+
+function docker-rm-containers {
+	docker rm $(docker ps -a -q)
+}
+
+function docker-rm-images {
+	docker rmi $(docker images -q)
+}
+
+function docker-pid {
+	docker inspect --format '{{ .State.Pid }}' "$@"
+}
+
+function docker-ip {
+	docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
+}
+
+#
+# days since a specific date
+# usage: datediff 2017-05-13 [to date]
+#   if `to_date' not supplied then today is assumed
+#
+function datediff() {
+    to_date=${2:-"today"}
+    d1=$(date -d "$to_date" +%s)
+    d2=$(date -d "$1" +%s)
+    echo $(( (d1 - d2) / 86400 )) days
+}
+
+#
+# pass the column (#) you'd like to find the mean and median
+#
+function mean-and-median-col {
+	sort -k $1 -n | awk -v N=$1 '{ sum += $N; count[NR] = $N } END { if (NR > 0)
+print "AVG: " sum / NR; if (NR % 2) { print "Median: " count[(NR+1)/2] } else { print "Median: " (count[NR/2]+count[(NR/2)+1]) / 2.0 } }'
+}
+
+#
+# check site in similarweb on chromium
+#
+function similarweb {
+	chromium https://www.similarweb.com/website/$1
+}
+
+#
+# check site in wayback machine on chromium
+#
+function wayback {
+	chromium https://web-beta.archive.org/web/*/$1/
+}
+
+# 
+# fetch HTML page and extract using CSS selector
+# usage: parse-html div http://google.com
+#
+function parse-html {
+	curl $2 | hxselect -is '\n\n' $1
+}
+
+#
+# returns the parent process identifier of some process id
+# usage: parent_id_of 1340
+#
+function parent_id_of {
+	ps -o ppid= $1
+}
+
+#
+# Removed weird apostrophes and such from document
+#
+function unwordify {
+	sed -e "s/’/'/g; s/“/\"/g; s/”/\"/g; s/‘/\'/g; s/–/-/g; s/—/-/g" $@
+}
