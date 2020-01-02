@@ -162,3 +162,4 @@ export GOPATH=$HOME/workspace/tsagkase/golang
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias dotfiles='/usr/bin/git --git-dir=/home/lunluc/.dotfiles.git/ --work-tree=/home/lunluc'
+alias task="/home/lunluc/bin/task-git.sh"
