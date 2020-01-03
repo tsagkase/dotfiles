@@ -435,3 +435,6 @@ mode "focused" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
+
+# focus on daily-log
+bindsym $mod+Shift+v [title="DAILY-LOG"] focus

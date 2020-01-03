@@ -166,6 +166,10 @@ alias task="$HOME/bin/task-git/task-git.sh" #  --task-git-push"
 
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME'
+# daily log
+if [ -r $HOME/.bash/daily-log.sh ]; then
+	source $HOME/.bash/daily-log.sh
+fi
 
 # taskwarrior
 if [ -r $HOME/.bash/taskwarrior.sh ]; then
