@@ -272,7 +272,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# Lock screen
+# Lock screen with (mod+Delete)
 bindcode $mod+119 exec --no-startup-id blurlock
 
 # Autostart applications
@@ -419,4 +419,19 @@ mode "$mode_gaps_outer" {
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
+}
+
+bindsym $mod+x mode "focused"
+
+mode "focused" {
+	# hardcoded focus keybindings
+	bindsym f [class="(?i)firefox"] focus
+
+	# keybindings for marking and jumping to clients
+	# use this to either mark or go to a container you want by name
+	bindsym a exec i3-input -F 'mark %s' -P 'Mark name: '
+	bindsym g exec i3-input -F '[con_mark=%s] focus' -P 'Go to mark: '
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
