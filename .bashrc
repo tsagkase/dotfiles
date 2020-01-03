@@ -112,6 +112,8 @@ shopt -s expand_aliases
 
 # Enable history appending instead of overwriting.  #139609
 shopt -s histappend
+export HISTSIZE=-1	# do not truncate history
+export HISTFILESIZE=-1	# do not truncate history
 
 #
 # # ex - archive extractor
@@ -157,6 +159,7 @@ unset color_prompt force_color_prompt
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
 export EDITOR=/usr/bin/vim
+export PATH=$PATH:$HOME/bin
 
 export GOPATH=$HOME/workspace/tsagkase/golang
 
