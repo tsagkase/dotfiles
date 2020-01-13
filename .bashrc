@@ -175,3 +175,7 @@ fi
 if [ -r $HOME/.bash/taskwarrior.sh ]; then
 	source $HOME/.bash/taskwarrior.sh
 fi
+
+if [ -f ~/.bash/bash_functions ]; then
+    . ~/.bash/bash_functions
+fi
