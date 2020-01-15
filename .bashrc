@@ -182,3 +182,7 @@ fi
 
 # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
+
+if [ -f ~/.bash/bash_functions ]; then
+    . ~/.bash/bash_functions
+fi
