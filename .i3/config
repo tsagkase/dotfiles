@@ -438,3 +438,10 @@ mode "focused" {
 
 # focus on daily-log
 bindsym $mod+Shift+v [title="DAILY-LOG"] focus
+
+# quick access to phone book
+bindsym $mod+c exec st -t 'Phone-Book' -f 'Liberation Mono:size=16' -e '/home/etsagkas/bin/phonebook.sh' -g 80x10+0+0
+for_window [title="Phone-Book"] floating enable
+#bindsym $mod+c exec urxvt -e '/home/etsagkas/bin/phonebook.sh' -g 40x10
+#for_window [title="phonebook.sh"] floating enable
+
