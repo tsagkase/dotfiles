@@ -22,3 +22,4 @@ au BufWritePre * let &bex = '-' . strftime("%Y%m%d-%H%M%S") . '.vimbackup'
 
 " daily.log timestamp abbreviation `log`
 autocmd BufNewFile,BufRead daily.log iabbrev `log` <ESC>:r!date +"(\%V) \%Y-\%m-\%d \%R:\%S (\%Z \%:::z)\%n*"<CR>A
+autocmd BufNewFile,BufRead daily.log iabbrev `tmts` <ESC>:r!date +"\%R:\%S"<CR>kJA
