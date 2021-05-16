@@ -159,6 +159,7 @@ export PERLBREW_ROOT=/opt/perl5
 source ${PERLBREW_ROOT}/etc/bashrc
 
 export PATH=$PATH:$HOME/bin
+export PATH="$PATH:/home/etsagkas/.dotnet/tools"
 
 export GOPATH=$HOME/workspace/tsagkase/golang
 alias task="$HOME/bin/task-git/task-git.sh" #  --task-git-push"
