@@ -186,3 +186,8 @@ source ~/.cache/wal/colors-tty.sh
 if [ -f ~/.bash/bash_functions ]; then
     . ~/.bash/bash_functions
 fi
+
+alias icat='kitty icat --align=left'
+alias isvg='rsvg-convert | icat'
+alias idot='dot -Tsvg'
+
