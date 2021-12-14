@@ -27,7 +27,7 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec terminal
+bindsym $mod+Return exec /usr/bin/kitty -o allow_remote_control=yes # terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
