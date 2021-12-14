@@ -94,7 +94,7 @@ function parent_id_of {
 # Removed weird apostrophes and such from document
 #
 function unwordify {
-	sed -e "s/’/'/g; s/“/\"/g; s/”/\"/g; s/‘/\'/g; s/–/-/g; s/—/-/g" $@
+	sed -e "s/’/'/g; s/“/\"/g; s/”/\"/g; s/‘/\'/g; s/–/-/g; s/—/-/g" "$@"
 }
 
 # using ripgrep combined with preview
