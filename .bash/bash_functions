@@ -2,11 +2,19 @@
 # Remote desktop related
 #
 function rdp {
-	rdesktop -r sound:local -g 1920x1050 -a 32 -z -P $*
+	rdesktop -r clipboard:PRIMARYCLIPBOARD -r sound:local -g 1910x1020 -a 32 -z -P $*
 }
 
 function rdp-dev {
 	rdp -u administrator 10.1.1.152 $*
+}
+
+function xfrdp {
+	xfreerdp /bpp:32 /gfx /size:1910x1020 +aero +fonts $*
+}
+
+function xfrdp-hr {
+	xfrdp /v:10.2.4.24 /d:dmcdomain /u:etsagkas
 }
 
 #
