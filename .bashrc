@@ -125,6 +125,8 @@ shopt -s expand_aliases
 shopt -s histappend
 export HISTSIZE=-1	# do not truncate history
 export HISTFILESIZE=-1	# do not truncate history
+export HISTIGNORE='rm *:rm -r *:rm -rf *:rm -r /: rm -rf /'
+export HISTCONTROL='ignorespace'
 
 #
 # # ex - archive extractor
