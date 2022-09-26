@@ -190,7 +190,15 @@ if [ -f ~/.bash/bash_functions ]; then
     . ~/.bash/bash_functions
 fi
 
+if [ -f ~/.config/locale.conf ]; then
+    source ~/.config/locale.conf
+fi
+
 alias icat='kitty icat --align=left'
 alias isvg='rsvg-convert | icat'
 alias idot='dot -Tsvg'
 
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
