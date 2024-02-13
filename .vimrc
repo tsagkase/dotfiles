@@ -1,6 +1,9 @@
 " load defaults
 so $VIMRUNTIME/defaults.vim
 
+" set fileencodings=cp1253,ucs-bom,utf-8,default,latin1
+set fileencodings=ucs-bom,utf-8,default,latin1
+
 autocmd BufNewFile,BufRead *.p? compiler perl
 
 set nobackup
