@@ -17,6 +17,7 @@ autocmd BufNewFile,BufRead daily.log iabbrev `tmts` <ESC>:r!date +"\%R:\%S"<CR>k
 autocmd BufNewFile,BufRead daily.log nnoremap <leader>> :?^```?+1,/^```/-1s/^/    /<CR>
 autocmd BufNewFile,BufRead daily.log nnoremap <leader>q :?^```?+1,/^```/-1s/^/   > /<CR>{jdd/^```$/<CR>D
 autocmd BufNewFile,BufRead daily.log nnoremap <leader>l :r!date +"(\%V) \%Y-\%m-\%d \%R:\%S (\%Z \%:::z)\%n* "<CR>A
+autocmd BufNewFile,BufRead daily.log nnoremap <leader>t :r!date +"\%R:\%S"<CR>kJA
 autocmd BufNewFile,BufRead daily.log nnoremap <leader>s :r!date +"(\%V) \%Y-\%m-\%d \%R:\%S (\%Z \%:::z)\%n* "<CR>A#TODO_tag_this Current status:<CR><CR>```<CR>```<ESC>O<ESC>"+p:?^```?+1,/^```/-1s/^/    /<CR>{jdd/^```$/<CR>D{/ #<CR>wyiW? #TODO_tag_this<CR>pwdE}}
 " autocmd BufNewFile,BufRead daily.log nnoremap <leader>s :?^```?+1,/^```/-1s/^/    /<CR>{jdd/^```$/<CR>D
 autocmd BufNewFile,BufRead daily.log nnoremap <leader>t i<CR><ESC>:r! date +"\%R:\%S:\%S "<CR>kddp2kJJ
