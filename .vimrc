@@ -27,3 +27,7 @@ autocmd FileType cs setlocal shiftwidth=4 tabstop=4 "expandtab
 autocmd FileType xml setlocal shiftwidth=3 tabstop=3 "expandtab
 autocmd FileType perl setlocal shiftwidth=4 tabstop=4 "expandtab
 imap kj <ESC>
+
+let g:gruvbox_contrast_dark = 'hard'
+set bg=dark
+color gruvbox
