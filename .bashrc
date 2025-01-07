@@ -59,6 +59,13 @@ match_lhs=""
 	&& match_lhs=$(dircolors --print-database)
 [[ $'\n'${match_lhs} == *$'\n'"TERM "${safe_term}* ]] && use_color=true
 
+# git prompt!
+if [ -r ~/.git-prompt.sh ]; then
+	source ~/.git-prompt.sh
+else
+	echo "didn't find git-prompt"
+fi
+
 if ${use_color} ; then
 	# Enable colors for ls, etc.  Prefer ~/.dir_colors #64489
 	if type -P dircolors >/dev/null ; then
@@ -70,9 +77,11 @@ if ${use_color} ; then
 	fi
 
 	if [[ ${EUID} == 0 ]] ; then
-		PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+		# PS1='\[\033[01;31m\][\h\[\033[01;36m\] \W\[\033[01;31m\]]\$\[\033[00m\] '
+		PS1='[\[\033[01;31m\]\h\[\033[00m\]|\D{%b %d, %T}]\n\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
 	else
-		PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+		# PS1='\[\033[01;32m\][\u@\h\[\033[01;37m\] \W\[\033[01;32m\]]\$\[\033[00m\] '
+		PS1='[\[\033[01;32m\]\u@\h\[\033[00m\]|\D{%b %d, %T}]\n\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
 	fi
 
 	alias ls='ls --color=auto'
@@ -82,9 +91,11 @@ if ${use_color} ; then
 else
 	if [[ ${EUID} == 0 ]] ; then
 		# show root@ when we don't have colors
-		PS1='\u@\h \W \$ '
+		PS1='[\u@\h|\D{%b %d, %T}]\n\W$(__git_ps1 " (%s)")\$ '
+		# PS1='\u@\h \W \$ '
 	else
-		PS1='\u@\h \w \$ '
+		PS1='[\u@\h|\D{%b %d, %T}]\n\w$(__git_ps1 " (%s)")\$ '
+		# PS1='\u@\h \w \$ '
 	fi
 fi
 
@@ -114,6 +125,8 @@ shopt -s expand_aliases
 shopt -s histappend
 export HISTSIZE=-1	# do not truncate history
 export HISTFILESIZE=-1	# do not truncate history
+export HISTIGNORE='rm *:rm -r *:rm -rf *:rm -r /: rm -rf /'
+export HISTCONTROL='ignorespace'
 
 #
 # # ex - archive extractor
@@ -140,26 +153,15 @@ ex ()
   fi
 }
 
-# git prompt!
-if [ -r ~/.git-prompt.sh ]; then
-	echo "sourcing git-prompt"
-	source ~/.git-prompt.sh
-else
-	echo "didn't find git-prompt"
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='[${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]|\D{%b %d, %T}]\n\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
-else
-    PS1='[${debian_chroot:+($debian_chroot)}\u@\h|\D{%b %d, %T}]\n\w$(__git_ps1 " (%s)")\$ '
-fi
-unset color_prompt force_color_prompt
-
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
 export EDITOR=/usr/bin/vim
+export PERLBREW_ROOT=/opt/perl5
+source ${PERLBREW_ROOT}/etc/bashrc
+
 export PATH=$PATH:$HOME/bin
+export PATH="$PATH:/home/etsagkas/.dotnet/tools"
 
 export GOPATH=$HOME/workspace/tsagkase/golang
 alias task="$HOME/bin/task-git/task-git.sh" #  --task-git-push"
@@ -176,11 +178,26 @@ if [ -r $HOME/.bash/taskwarrior.sh ]; then
 	source $HOME/.bash/taskwarrior.sh
 fi
 
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+# (cat ~/.cache/wal/sequences &)
+
+# To add support for TTYs this line can be optionally added.
+# source ~/.cache/wal/colors-tty.sh
+
 if [ -f ~/.bash/bash_functions ]; then
     . ~/.bash/bash_functions
+fi
+
+if [ -f ~/.config/locale.conf ]; then
+    source ~/.config/locale.conf
 fi
 
 alias icat='kitty icat --align=left'
 alias isvg='rsvg-convert | icat'
 alias idot='dot -Tsvg'
 
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
