@@ -27,7 +27,9 @@ font xft:URWGothic-Book 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty -o font_family="Liberation Mono" -o allow_remote_control=yes # terminal
+bindsym $mod+Ctrl+Return exec kitty -o font_family="Liberation Mono" -o font_size=11 -o allow_remote_control=yes # terminal
+# bindsym $mod+Ctrl+Return exec kitty -o font_family="Iosevka Term SS04 ExtraLight Extended" -o font_size=12 -o allow_remote_control=yes # -o adjust_column_width=-1 terminal
+bindsym $mod+Return exec kitty -o font_family="Iosevka Term SS07 Light Extended" -o font_size=14 -o allow_remote_control=yes # -o adjust_column_width=-1 terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
