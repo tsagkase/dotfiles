@@ -1,0 +1,18 @@
+{
+  "providers": {
+    "llama-local": {
+      "baseUrl": "https://psa3e.psa3e.com/v1",
+      "api": "openai-completions",
+      "apiKey": "psa3epsa3edenthatobreis",
+      "models": [
+        {
+          "id": "Qwen3.8",
+          "name": "Qwen3.8",
+          "contextWindow": 174080,
+	  "input": [ "text", "image" ],
+	  "maxTokesn": 174080
+	}
+      ]
+    }
+  }
+}
