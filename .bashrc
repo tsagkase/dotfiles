@@ -2,6 +2,7 @@
 # ~/.bashrc
 #
 
+# If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 colors() {
@@ -158,7 +159,9 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 
 export EDITOR=/usr/bin/vim
 export PERLBREW_ROOT=/opt/perl5
-source ${PERLBREW_ROOT}/etc/bashrc
+if [ -d ${PERLBREW_ROOT} ] && [ -d ${PERLBREW_ROOT}/etc ] && [ -r ${PERLBREW_ROOT}/etc/bashrc ]; then
+	source ${PERLBREW_ROOT}/etc/bashrc
+fi
 
 export PATH=$PATH:$HOME/bin
 export PATH="$PATH:/home/etsagkas/.dotnet/tools"
@@ -201,3 +204,9 @@ alias idot='dot -Tsvg'
 # BEGIN_KITTY_SHELL_INTEGRATION
 if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
 # END_KITTY_SHELL_INTEGRATION
+
+PATH="/home/etsagkas/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/etsagkas/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/etsagkas/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/etsagkas/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/etsagkas/perl5"; export PERL_MM_OPT;
